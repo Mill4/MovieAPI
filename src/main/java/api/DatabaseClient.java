@@ -1,23 +1,46 @@
 package api;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import api.data.Movie;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 public class DatabaseClient {
-    private final String FILE_PATH = "database/moviedata.parquet";
+    private MovieDatabase database;
 
     public DatabaseClient() {
-        File f = new File(FILE_PATH);
-        if(!f.exists()){
-            try {
-                f.getParentFile().mkdirs();
-                f.createNewFile();
-            }
-            catch (IOException e) {
-                System.out.println("Error, Failed to create database. " + e.toString());
-            }
+        database = new MovieDatabase();
+    }
+
+    public String getAllMovies() {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.writeValueAsString(database.getAllMovies());
+        }
+        catch (Exception e) {
+            return null;
         }
     }
+
+    public Response AddMovie(String json) {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            Movie movie = mapper.readValue(json, Movie.class);
+            if(database.tryAddMovieToDB(movie)) {
+                return new Response(200, "SUCCESS", "New movie added successfully");
+            }
+            else {
+                return new Response(400, "ERROR", "Movie already exists in database.");
+            }
+        }
+        catch (Exception e) {
+            System.out.println(e.toString());
+            return new Response(400, "EXCEPTION", "Unable to parse movie from JSON");
+        }
+    }
+
+    public boolean isSuccessfulInit() {
+        return database.isSuccessfulInit();
+    }
+
 
 }
