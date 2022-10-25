@@ -5,23 +5,31 @@ import static spark.Spark.get;
 
 public class Main {
     public static void main(String[] args) {
-        DatabaseClient db = new DatabaseClient();
-        if(!db.isSuccessfulInit()) {
-            System.out.println("Database creation failed. Exiting..");
+        DatabaseClient client = new DatabaseClient();
+        if(!client.isSuccessfulInit()) {
+            System.out.println("Database creation or connection failed. Exiting..");
             System.exit(1);
         }
 
+        /*
+        * LIST ALL MOVIES
+        * */
         get(Routes.GET_MOVIES_URI, "application/json", (req, res) -> {
-            String r = db.getAllMovies();
-            if(r != null) {
-                return r;
-            }
-            res.status(500);
-            return new Response(500, "ERROR", "Unable to fetch movies from database.").toJsonString();
+            return client.getAllMovies();
         });
 
+        /*
+        * GET MOVIE BY NAME
+        * */
+        get(Routes.GET_MOVIE_BY_NAME_URI, "application/json", (req, res) -> {
+            return client.getMovieByName(req.params(":name"));
+        });
+
+        /*
+        * ADD NEW MOVIE
+        * */
         post(Routes.ADD_MOVIE_URI, "application/json", (req, res) -> {
-            Response r = db.AddMovie(req.body());
+            Response r = client.addMovie(req.body());
             res.status(r.getStatusCode());
             return r.toJsonString();
         });

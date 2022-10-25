@@ -1,6 +1,7 @@
 package api;
 
 import api.data.Movie;
+import api.data.SimplifiedMovie;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
@@ -30,8 +31,19 @@ public class MovieDatabase {
         return databaseCreated;
     }
 
-    public ArrayList<Movie> getAllMovies() {
-        return movies;
+    public ArrayList<SimplifiedMovie> getAllMoviesAsSimplified() {
+        return simplify();
+    }
+
+    public Movie getMovieByName(String name) {
+        Optional<Movie> existing = movies
+                .stream()
+                .filter(m -> m.getName().equals(name))
+                .findAny();
+        if(existing.isPresent()) {
+            return existing.get();
+        }
+        return null;
     }
 
     public boolean tryAddMovieToDB(Movie movie) {
@@ -45,6 +57,14 @@ public class MovieDatabase {
         movies.add(movie);
         update();
         return true;
+    }
+
+    private ArrayList<SimplifiedMovie> simplify() {
+        ArrayList<SimplifiedMovie> result = new ArrayList<>();
+        for(Movie m : movies) {
+            result.add(new SimplifiedMovie(m));
+        }
+        return result;
     }
 
     private void update() {

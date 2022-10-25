@@ -22,7 +22,7 @@ public class Movie implements Serializable {
             return false;
         }
         Movie m = (Movie) o;
-        if(name.equals(m.name) && synopsis.equals(m.synopsis)) {
+        if(name.equals(m.name)) {
             return true;
         }
         return false;
