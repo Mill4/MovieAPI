@@ -46,7 +46,7 @@ public class MovieDatabase {
         return null;
     }
 
-    public boolean tryAddMovieToDB(Movie movie) {
+    public boolean tryAddMovieTo(Movie movie) {
         Optional<Movie> existing = movies
                 .stream()
                 .filter(m -> m.equals(movie))
@@ -57,6 +57,23 @@ public class MovieDatabase {
         movies.add(movie);
         update();
         return true;
+    }
+
+    public boolean tryUpdateMovie(Movie movie) {
+        for(Movie m : movies) {
+            if(m.equals(m)) {
+                m.copy(movie);
+                update();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean tryRemoveMovie(String name) {
+        boolean res = movies.removeIf(m -> m.name.equals(name));
+        update();
+        return res;
     }
 
     private ArrayList<SimplifiedMovie> simplify() {

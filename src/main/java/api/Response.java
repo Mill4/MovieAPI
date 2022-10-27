@@ -3,12 +3,10 @@ package api;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Response {
-    private int statusCode;
     private String status;
     private String message;
 
-    public Response(int statusCode, String status, String message) {
-        this.statusCode = statusCode;
+    public Response(String status, String message) {
         this.status = status;
         this.message = message;
     }
@@ -21,14 +19,6 @@ public class Response {
         catch (Exception e) {
             return "";
         }
-    }
-
-    public int getStatusCode() {
-        return statusCode;
-    }
-
-    public void setStatusCode(int statusCode) {
-        this.statusCode = statusCode;
     }
 
     public String getStatus() {

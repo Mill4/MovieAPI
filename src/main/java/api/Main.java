@@ -1,7 +1,11 @@
 package api;
 
+import com.clearspring.analytics.util.Pair;
+
 import static spark.Spark.post;
 import static spark.Spark.get;
+import static spark.Spark.put;
+import static spark.Spark.delete;
 
 public class Main {
     public static void main(String[] args) {
@@ -15,23 +19,45 @@ public class Main {
         * LIST ALL MOVIES
         * */
         get(Routes.GET_MOVIES_URI, "application/json", (req, res) -> {
-            return client.getAllMovies();
+            Pair<String, Integer>  result = client.getAllMovies();
+            res.status(result.right);
+            return result.left;
         });
 
         /*
         * GET MOVIE BY NAME
         * */
         get(Routes.GET_MOVIE_BY_NAME_URI, "application/json", (req, res) -> {
-            return client.getMovieByName(req.params(":name"));
+            Pair<String, Integer>  result =  client.getMovieByName(req.params(":name"));
+            res.status(result.right);
+            return result.left;
         });
 
         /*
         * ADD NEW MOVIE
         * */
         post(Routes.ADD_MOVIE_URI, "application/json", (req, res) -> {
-            Response r = client.addMovie(req.body());
-            res.status(r.getStatusCode());
-            return r.toJsonString();
+            Pair<String, Integer>  result = client.addMovie(req.body());
+            res.status(result.right);
+            return result.left;
+        });
+
+        /*
+         * UPDATE MOVIE INFORMATION
+         * */
+        put(Routes.UPDATE_MOVIE_URI, "application/json", (req, res) -> {
+            Pair<String, Integer>  result =  client.updateMovieInformation(req.body());
+            res.status(result.right);
+            return result.left;
+        });
+
+        /*
+         * GET MOVIE BY NAME
+         * */
+        delete(Routes.GET_MOVIE_BY_NAME_URI, "application/json", (req, res) -> {
+            Pair<String, Integer>  result =  client.deleteMovie(req.params(":name"));
+            res.status(result.right);
+            return result.left;
         });
 
     }

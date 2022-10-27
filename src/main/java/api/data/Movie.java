@@ -28,6 +28,17 @@ public class Movie implements Serializable {
         return false;
     }
 
+    public void copy(Movie other) {
+        name = other.name;
+        year = other.year;
+        genres = other.genres;
+        ageLimit = other.ageLimit;
+        rating = other.rating;
+        actors = other.actors;
+        director = other.director;
+        synopsis = other.synopsis;
+    }
+
     public String getName() {
         return name;
     }
