@@ -3,8 +3,8 @@ package api.data;
 import java.io.Serializable;
 
 public class Actor implements Serializable {
-    public String firstName;
-    public String lastName;
+    private String firstName;
+    private String lastName;
 
 
     public void setFirstName(String name) {

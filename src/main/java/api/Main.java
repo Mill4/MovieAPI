@@ -16,19 +16,17 @@ public class Main {
         }
 
         /*
-        * LIST ALL MOVIES
+        * LIST ALL MOVIES OR GET MOVIE BY NAME
         * */
         get(Routes.GET_MOVIES_URI, "application/json", (req, res) -> {
-            Pair<String, Integer>  result = client.getAllMovies();
-            res.status(result.right);
-            return result.left;
-        });
-
-        /*
-        * GET MOVIE BY NAME
-        * */
-        get(Routes.GET_MOVIE_BY_NAME_URI, "application/json", (req, res) -> {
-            Pair<String, Integer>  result =  client.getMovieByName(req.params(":name"));
+            String query = req.queryParams("search");
+            Pair<String, Integer>  result;
+            if(query != null && query != "") {
+                result =  client.getMovieByName(query);
+            }
+            else {
+                result = client.getAllMovies();
+            }
             res.status(result.right);
             return result.left;
         });
@@ -52,9 +50,9 @@ public class Main {
         });
 
         /*
-         * GET MOVIE BY NAME
+         * DELETE MOVIE BY NAME
          * */
-        delete(Routes.GET_MOVIE_BY_NAME_URI, "application/json", (req, res) -> {
+        delete(Routes.DELETE_MOVIE_BY_NAME_URI, "application/json", (req, res) -> {
             Pair<String, Integer>  result =  client.deleteMovie(req.params(":name"));
             res.status(result.right);
             return result.left;

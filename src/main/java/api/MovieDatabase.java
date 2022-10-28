@@ -71,7 +71,7 @@ public class MovieDatabase {
     }
 
     public boolean tryRemoveMovie(String name) {
-        boolean res = movies.removeIf(m -> m.name.equals(name));
+        boolean res = movies.removeIf(m -> m.getName().equals(name));
         update();
         return res;
     }
@@ -105,7 +105,7 @@ public class MovieDatabase {
             return mapper.writeValueAsString(movies);
         }
         catch (Exception e) {
-            System.out.println("Failed to convert data to JSON. " + e.toString());
+            System.out.println("Failed to convert movie to JSON. " + e);
         }
         return "";
     }
@@ -120,12 +120,12 @@ public class MovieDatabase {
             }
         }
         catch (IOException e) {
-            System.out.println("Error, cannot initialize database. " + e.toString());
+            System.out.println("Error, cannot initialize database. " + e);
         }
     }
 
     /*
-    * Creates a new database if does not yet exists
+    * Creates a new database if not yet exist
     * */
     private void tryCreateDatabase() {
         File f = new File(FILE_PATH);
@@ -135,7 +135,7 @@ public class MovieDatabase {
                 databaseCreated = true;
             }
             catch (IOException e) {
-                System.out.println("Error, Failed to create database. " + e.toString());
+                System.out.println("Error, Failed to create database. " + e);
             }
         }
         else {

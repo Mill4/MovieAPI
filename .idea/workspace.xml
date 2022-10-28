@@ -9,8 +9,9 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/api/DatabaseClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/DatabaseClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/api/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/api/MovieDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/MovieDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/Response.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/api/Routes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/Routes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/api/data/Actor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/data/Actor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/api/data/Director.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/data/Director.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/api/data/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/data/Movie.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -59,7 +60,8 @@
       <workItem from="1666372416509" duration="216000" />
       <workItem from="1666457150958" duration="3431000" />
       <workItem from="1666515535917" duration="21162000" />
-      <workItem from="1666717057856" duration="8534000" />
+      <workItem from="1666717057856" duration="8888000" />
+      <workItem from="1666961834170" duration="6152000" />
     </task>
     <servers />
   </component>

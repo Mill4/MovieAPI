@@ -4,14 +4,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Movie implements Serializable {
-    public String name;
-    public int year;
-    public ArrayList<String> genres;
-    public int ageLimit;
-    public int rating;
-    public ArrayList<Actor> actors;
-    public Director director;
-    public String synopsis;
+    private String name;
+    private int year;
+    private ArrayList<String> genres;
+    private int ageLimit;
+    private int rating;
+    private ArrayList<Actor> actors;
+    private Director director;
+    private String synopsis;
 
     @Override
     public boolean equals(Object o) {
