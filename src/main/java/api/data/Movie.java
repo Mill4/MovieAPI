@@ -29,14 +29,14 @@ public class Movie implements Serializable {
     }
 
     public void copy(Movie other) {
-        name = other.name;
-        year = other.year;
-        genres = other.genres;
-        ageLimit = other.ageLimit;
-        rating = other.rating;
-        actors = other.actors;
-        director = other.director;
-        synopsis = other.synopsis;
+        this.name = other.getName();
+        this.year = other.getYear();
+        this.genres = other.getGenres();
+        this.ageLimit = other.getAgeLimit();
+        this.rating = other.getRating();
+        this.actors = other.getActors();
+        this.director = other.getDirector();
+        this.synopsis = other.getSynopsis();
     }
 
     public String getName() {

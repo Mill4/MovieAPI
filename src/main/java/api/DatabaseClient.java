@@ -19,7 +19,7 @@ public class DatabaseClient {
             return new Pair(mapper.writeValueAsString(database.getAllMoviesAsSimplified()), 200);
         }
         catch (Exception e) {
-            System.out.println(e);
+            System.out.println("Error, unable to parse all movies from database. " + e);
             return new Pair(new Response( "EXCEPTION", "Unable to parse the data from database").toJsonString(), 500);
         }
     }
@@ -34,7 +34,7 @@ public class DatabaseClient {
             return new Pair(mapper.writeValueAsString(movie), 200);
         }
         catch (Exception e) {
-            System.out.println(e);
+            System.out.println("Error, unable to parse movie from database. " + e);
             return new Pair(new Response("EXCEPTION", "Unable to parse the data from database").toJsonString(), 500);
         }
     }

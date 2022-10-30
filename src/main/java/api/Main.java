@@ -9,12 +9,14 @@ import static spark.Spark.delete;
 
 public class Main {
     public static void main(String[] args) {
+        System.out.println("Movie API starting...");
         DatabaseClient client = new DatabaseClient();
         if(!client.isSuccessfulInit()) {
             System.out.println("Database creation or connection failed. Exiting..");
             System.exit(1);
         }
 
+        System.out.println("Listening http://*:4567");
         /*
         * LIST ALL MOVIES OR GET MOVIE BY NAME
         * */

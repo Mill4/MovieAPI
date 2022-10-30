@@ -54,6 +54,7 @@ public class MovieDatabase {
         if(existing.isPresent()) {
             return false;
         }
+        System.out.println("Adding new movie to database: " + movie.getName());
         movies.add(movie);
         update();
         return true;
@@ -61,7 +62,7 @@ public class MovieDatabase {
 
     public boolean tryUpdateMovie(Movie movie) {
         for(Movie m : movies) {
-            if(m.equals(m)) {
+            if(m.equals(movie)) {
                 m.copy(movie);
                 update();
                 return true;
@@ -92,7 +93,7 @@ public class MovieDatabase {
             writer.close();
         }
         catch(Exception e) {
-            System.out.printf("Failed to update database. " + e.toString());
+            System.out.printf("Failed to update database. " + e);
         }
         finally {
             lock.writeLock().unlock();
@@ -116,7 +117,7 @@ public class MovieDatabase {
             if(content.length() > 0) {
                 ObjectMapper om = new ObjectMapper();
                 Movie[] moviesArray = om.readValue(content, Movie[].class);
-                movies = new ArrayList<Movie>(Arrays.asList(moviesArray));
+                movies = new ArrayList<>(Arrays.asList(moviesArray));
             }
         }
         catch (IOException e) {
